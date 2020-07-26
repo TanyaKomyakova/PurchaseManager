@@ -9,7 +9,6 @@ import ru.netology.repository.ProductRepository;
 
 
 @Data
-@NoArgsConstructor
 public class ProductManager {
     private ProductRepository repository;
 
@@ -60,4 +59,5 @@ public class ProductManager {
         }
         return false;
     }
+
 }
