@@ -22,7 +22,7 @@ class ProductManagerTest {
     @Test
     public void shouldBeFoundSmartphone(){// Следует найти смартфон
         manager.add(first);
-        manager.matches(product,"version1");
+
         Product[] actual = manager.searchBy("version1");
         Product[] expected = new Product[]{first};
         assertArrayEquals(expected, actual);
@@ -32,7 +32,6 @@ class ProductManagerTest {
     @Test
     public void shouldBeFoundBook(){// Следует найти книгу
         manager.add(fourth);
-        manager.matches(product,"OscarWilde");
         Product[] actual = manager.searchBy("OscarWilde");
         Product[] expected = new Product[]{fourth};
         assertArrayEquals(expected, actual);
