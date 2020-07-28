@@ -9,8 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookTest {
 
     private Book book = new Book();
-    private ProductRepository productRepository= new ProductRepository();
-    private ProductManager manager = new ProductManager(productRepository);
+
 
     private Smartphone first = new Smartphone(1,"version1",12,"LG");
     private Smartphone second = new Smartphone(2,"IpxoneXR",13,"Apple");
@@ -21,11 +20,10 @@ class BookTest {
 
     @Test
     public void fcv(){
-        manager.add(fifth);
 
-         boolean actual = book.matches("OrdinaryStory");
-         boolean expected = ;
-        assertEquals(expected, actual);
+        boolean actual = fifth.matches("OrdinaryStory");
+        boolean expected = true;
+        assertTrue(actual);
     }
 
 }
