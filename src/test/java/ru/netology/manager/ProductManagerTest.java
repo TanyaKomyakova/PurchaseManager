@@ -20,59 +20,57 @@ class ProductManagerTest {
     private Book sixth = new Book(6, "TheManWhoLaughs",19,"VictorMarieHugo");
 
     @Test
-    public void shouldBeFoundSmartphone(){// Следует найти смартфон
+    public void findASmartphoneByName() {// Следует найти смартфон по названию
         manager.add(first);
-        manager.matches(product,"version1");
         Product[] actual = manager.searchBy("version1");
         Product[] expected = new Product[]{first};
         assertArrayEquals(expected, actual);
-
     }
 
     @Test
-    public void shouldBeFoundBook(){// Следует найти книгу
+    public void findABookByName(){// Следует найти книгу по названию
         manager.add(fourth);
-        manager.matches(product,"OscarWilde");
-        Product[] actual = manager.searchBy("OscarWilde");
+        Product[] actual = manager.searchBy("PortraitOfDorianGray");
         Product[] expected = new Product[]{fourth};
         assertArrayEquals(expected, actual);
-
     }
 
     @Test
-    public void shouldBeFoundIfDoesNotExist1(){// Следует найти книгу по несуществующим данным
-        manager.add(fourth);
-        manager.searchBy("version2");
-        Product[] actual = new Product[]{}; ;
-        Product[] expected = new Product[]{};
+    public void findASmartphoneByManufacturer() {// Следует найти смартфон по производителю
+        manager.add(second);
+        Product[] actual = manager.searchBy("Apple");
+        Product[] expected = new Product[]{second};
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldBeFoundIfDoesNotExist2(){// Следует найти смартфон по несуществующим данным
-        manager.add(second);
-        manager.searchBy("Apple2");
-        Product[] actual = new Product[]{}; ;
-        Product[] expected = new Product[]{};
+    public void findABookByAuthor(){// Следует найти книгу по автору
+        manager.add(fifth);
+        Product[] actual = manager.searchBy("IvanAlexandrovichGoncharov");
+        Product[] expected = new Product[]{fifth};
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldBeFound(){// Следует найти
-        manager.add(first);
-        manager.add(second);
-        manager.add(fourth);
+    public void shouldBeBookFoundIfDoesNotExist(){// Следует найти книгу по несуществующим данным
+
         manager.add(sixth);
-        manager.searchBy("version1");
-        manager.searchBy("Apple");
-        manager.searchBy("OscarWilde");
-        manager.searchBy("TheManWhoLaughs");
+        manager.matches(product,"version1");
+        manager.matches(product,"Apple");
+        Product[] actual = manager.searchBy("OscarWilde");
+        Product[] expected = new Product[]{};
+        assertArrayEquals(expected, actual);
+    }
 
-        Product[] actual = new Product[]{first,second,fourth,sixth};
+    @Test
+    public void shouldBeSmartphoneFoundIfDoesNotExist(){// Следует найти смартфон по несуществующим данным
 
-        Product[] expected = new Product[]{first,second,fourth,sixth};
-        assertArrayEquals(expected,actual);
-
+        manager.add(third);
+        manager.matches(product,"version1");
+        manager.matches(product,"Apple");
+        Product[] actual = manager.searchBy("Apple");
+        Product[] expected = new Product[]{};
+        assertArrayEquals(expected, actual);
     }
 
 }
